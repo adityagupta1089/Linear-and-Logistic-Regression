@@ -102,8 +102,8 @@ ylabel('\lambda for Minimum Average Mean Sqaured Testing Error');
 % difference between predicted values for best lambda and fraction
 figure
 [minmin, minminIdx] = min(mins);
-frac = 0.5;%fractions(minminIdx);
-lambda = 5;%lambdas(minIdx(minminIdx));
+frac = fractions(minminIdx);
+lambda = lambdas(minIdx(minminIdx));
 %shuffling
 perm = randperm(N); 
 X = X(perm, :);
