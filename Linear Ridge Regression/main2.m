@@ -54,13 +54,15 @@ end
 close(wb);
 [cX, cY] = meshgrid(lambdas, fractions);
 % training error
-surf(cX, cY, trainErrors);
+surf(cX, cY, trainErrors, 'FaceColor','interp', 'EdgeColor','none',...
+   'FaceLighting','phong');
 xlabel('\lambda');
 ylabel('Fraction of Training Data used');
 zlabel('Average Mean squared Training Error');
 % testing error
 figure
-surf(cX, cY, testErrors);
+surf(cX, cY, testErrors, 'FaceColor','interp', 'EdgeColor','none',...
+   'FaceLighting','phong');
 xlabel('\lambda');
 ylabel('Fraction of Training Data used');
 zlabel('Average Mean squared Testing Error');
@@ -91,19 +93,18 @@ end
 figure
 [mins, minIdx] = min(testErrors, [], 2);
 subplot(1,2,1);
-plot(fractions, mins);
+plot(fractions, mins, 'xr', fractions, mins, ':b');
 xlabel('Fraction of Training Data');
 ylabel('Minimum Average Mean Sqaured Testing Error');
 % lambda value
 subplot(1,2,2);
-plot(fractions, lambdas(minIdx));
+plot(fractions, lambdas(minIdx), 'xr', fractions, lambdas(minIdx), ':b');
 xlabel('Fraction of Training Data');
 ylabel('\lambda for Minimum Average Mean Sqaured Testing Error');
-% difference between predicted values for best lambda and fraction
+% difference between predicted values for best lambda
 figure
-[minmin, minminIdx] = min(mins);
-frac = fractions(minminIdx);
-lambda = lambdas(minIdx(minminIdx));
+frac = 0.5;
+lambda = lambdas(minIdx(fractions==frac));
 %shuffling
 perm = randperm(N); 
 X = X(perm, :);
@@ -123,7 +124,9 @@ Ttest = mylinridgeregeval(Xtest, W);
 rng = [0 max(max([Ttrain;Ttest;Ytrain;Ytest]))];
 % training set
 subplot(1, 2, 1);
-plot(Ytrain, Ttrain);
+hold on
+plot(Ytrain, Ttrain, 'bx');
+line(rng, rng, 'Color', 'red', 'LineWidth', 2);
 xlabel('Actual Values');
 ylabel('Predicted Values');
 xlim(rng);
@@ -131,7 +134,9 @@ ylim(rng);
 title('Training Data');
 % testing set
 subplot(1, 2, 2);
-plot(Ytest, Ttest);
+hold on
+plot(Ytest, Ttest, 'bx');
+line(rng, rng, 'Color', 'red', 'LineWidth', 2);
 xlabel('Actual Values');
 ylabel('Predicted Values');
 xlim(rng);
