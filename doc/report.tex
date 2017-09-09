@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{amsmath}
+\title{CSL603 - Machine Learning\\Lab 2}
+\author{Aditya Gupta\\2015CSB1003}
+\begin{document}
+\maketitle
+\section*{Linear Ridge Regression}
+Given $X$ and $Y$ we will find $W$ that minimizes $J(W)$, the error function and are defined as:
+$$f(X)=
+\underbrace{
+\begin{pmatrix}
+1&x_{11}&\cdots&x_{1D}\\
+1&x_{21}&\cdots&x_{2D}\\
+\vdots&\vdots&\ddots&\vdots\\
+1&x_{N1}&\cdots&x_{ND}
+\end{pmatrix}}_{X}
+\underbrace{
+\begin{pmatrix}
+w_0\\w_1\\\vdots\\w_D
+\end{pmatrix}}_{W}
+=
+\underbrace{
+\begin{pmatrix}
+y_0\\y_1\\\vdots\\y_N
+\end{pmatrix}}_{Y}$$
+$$
+\min_W J(W)\equiv\min_W\frac12(XW-Y)^T(XW-Y)+\lambda||W||^2
+$$
+Which when solved gives us:
+$$W=(X^tX+\lambda I)^{-1}X^TY$$
+\subsection*{Observations}
+The following observations were obtained:
+\begin{itemize}
+\item A particular value of $\lambda$(say $0$) was choosen and then the magnitude of entries in the weights $W$ was compared and one by one the least significant ones were discarded and the mean squared error changed in the following way:
+\item The effect of $\lambda$ on error was observed for different partitions of the data into training and testing sets. The average mean absolute error for 100 repetitions for splitting-fractions varying from $1\%$ to $99\%$ and lambda values from $0$ to $100$ was observed. The surface corresponding to the average mean absolute error observed was:
+\item The above surface can be plotted into different graphs for few particular values of splitting-fractions and varying lambda and obsreving the change in average mean absolute error. These figures were observed:
+\item Now we noted the minimum average mean squared testing error for each training set fraction values. Also the corresponding $\lambda$ value was observed. These figures were observed:
+\item The correspondence between the actual and predicted values was also observed. For perfect prediction, this should correspond to a straight line through origin at $45^\circ$ degrees. The following figures were obtained:
+\end{itemize}
+\end{document}
