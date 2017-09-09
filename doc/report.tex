@@ -2,6 +2,7 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{epstopdf}
+\usepackage{float}
 \title{CSL603 - Machine Learning\\Lab 2}
 \author{Aditya Gupta\\2015CSB1003}
 \begin{document}
@@ -33,42 +34,60 @@ $$W=(X^tX+\lambda I)^{-1}X^TY$$
 \subsection*{Observations}
 The following observations were obtained:
 \begin{itemize}
-\item A particular value of $\lambda$(say $0$) was choosen and then the magnitude of entries in the weights $W$ was compared and one by one the least significant ones were discarded and the mean squared error changed in the following way:
+\item A particular value of $\lambda$(say $0$) was choosen and then the magnitude of entries in the weights $W$ was compared and one by one the least significant ones were discarded and the mean squared error changed as can be seen in Figure \ref{fig:1}. We can see that discarding 2-4 least significant attributes does not make any major change to the mean squared error, hence we can conclude that the input data contains some attributes that are irrelevant in estimating the output values.
 
 \begin{figure}[!h]
-\makebox[\textwidth][c]{\includegraphics[scale=0.5]{fig1.eps}}
- \caption{Average Mean Sqaured Error for various values of training set fraction and $\lambda$ values used in Ridge Regression for Training Data.}
+\makebox[\textwidth][c]{\includegraphics{fig6.eps}}
+ \caption{Mean Sqaured Error for after discarding increasing number of least significant weights in $W$.}
+ \label{fig:1}
  \end{figure}
  
- \begin{figure}[!h]
-\makebox[\textwidth][c]{\includegraphics[scale=0.5]{fig2.eps}}
- \caption{Average Mean Sqaured Error for various values of training set fraction and $\lambda$ values used in Ridge Regression for Testing Data.}
+
+\item The effect of $\lambda$ on error was observed for different partitions of the data into training and testing sets. The average mean sqaured error for 100 repetitions for splitting-fractions varying from $1\%$ to $99\%$ and lambda values from $0$ to $100$ was observed. The surface corresponding to the average mean absolute error can be seen in Figure \ref{fig:2} and \ref{fig:3}. We can see that for low values of training set fraction or high $\lambda$ values the average mean squared error increased quite a bit.
+
+\begin{figure}[!h]
+\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{fig1.eps}}
+ \caption{Average Mean Sqaured Error for various values of training set fraction and $\lambda$ values used in Ridge Regression for Training Data.}
+ \label{fig:2}
  \end{figure}
 
-\item The effect of $\lambda$ on error was observed for different partitions of the data into training and testing sets. The average mean sqaured error for 100 repetitions for splitting-fractions varying from $1\%$ to $99\%$ and lambda values from $0$ to $100$ was observed. The surface corresponding to the average mean absolute error observed was:
+ \begin{figure}[!h]
+\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{fig2.eps}}
+ \caption{Average Mean Sqaured Error for various values of training set fraction and $\lambda$ values used in Ridge Regression for Testing Data.}
+ \label{fig:3}
+ \end{figure}
+ 
+\item Figure \ref{fig:2} and \ref{fig:3}'s surfaces can be plotted into different graphs for few particular values of splitting-fractions and varying lambda and obsreving the change in average mean absolute error. Figure \ref{fig:4} shows that for high $\lambda$ values the average mean squared error increases and is shaped like a convex function and the increase is more apparent in low training set fraction values.
 
 \begin{figure}[!h]
 \makebox[\textwidth][c]{\includegraphics[scale=0.6]{fig3.eps}}
  \caption{Average Mean Squared Error for various training set fractions varying against the $\lambda$ values}
+ \label{fig:4}
  \end{figure}
- 
-\item The above surface can be plotted into different graphs for few particular values of splitting-fractions and varying lambda and obsreving the change in average mean absolute error. These figures were observed:
 
-
-
-\item Now we noted the minimum average mean squared testing error for each training set fraction values. Also the corresponding $\lambda$ value was observed. These figures were observed:
+\item Now we noted the minimum average mean squared testing error for each training set fraction values. Also the corresponding $\lambda$ value was observed. We can see from Figure \ref{fig:5} that with high taining set fraction the minimum average mean sqaured error decreases and though the $\lambda$ values at which these values are obtained appear chaotic, probably due to the noise in the data, they do in general have higher magnitude ($\lambda$) as we increase the training set fraction.
 
 \begin{figure}[!h]
 \makebox[\textwidth][c]{\includegraphics[scale=0.6]{fig4.eps}}
  \caption{Minimum Average Mean Squared Error for various values of training set fraction and the corresponding $\lambda$ values.}
+ \label{fig:5}
  \end{figure}
  
-\item The correspondence between the actual and predicted values was also observed. For perfect prediction, this should correspond to a straight line through origin at $45^\circ$ degrees. The following figures were obtained:
+\item The correspondence between the actual and predicted values was also observed. For perfect prediction, this should correspond to a straight line through origin at $45^\circ$ degrees. Figure \ref{fig:6} shows that the actual values and the predicted values lie close to the line $y=x$ thus ensuring that there is a significant correlation and accuracy to the predicted values.
 
 \begin{figure}[!h]
 \makebox[\textwidth][c]{\includegraphics[scale=0.6]{fig5.eps}}
  \caption{Relation between the actual data set values and predicted values for training and testing data. The reference line $y=x$ is shown in red.}
+ \label{fig:6}
  \end{figure}
  
+\end{itemize}
+
+\subsection*{Summary: Conclusions}
+\begin{itemize}
+\item With high $\lambda$ values the average mean sqaured error increases.
+\item With high training set fraction the average mean squared error decreases.
+\item The actual and predicted values lie quite close to the line $y=x$.
+\item Discarding few attributes doesn't make quite a difference hence their irrelevancy to the use in prediction of output values.
 \end{itemize}
 \end{document}
