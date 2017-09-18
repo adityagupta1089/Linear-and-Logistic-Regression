@@ -3,6 +3,7 @@
 \usepackage{graphicx}
 \usepackage{epstopdf}
 \usepackage{float}
+\usepackage{subfigure}
 \title{CSL603 - Machine Learning\\Lab 2}
 \author{Aditya Gupta\\2015CSB1003}
 \begin{document}
@@ -92,4 +93,86 @@ The following observations were obtained:
 \end{itemize}
 
 \section{Regularized Logistic Regression}
+Given $x_1$ and $x_2$ attribute values for different individual whether the credit card application should be accepted or rejected.
+\begin{itemize}
+
+\begin{figure}[H]
+\makebox[\textwidth][c]{\includegraphics[scale=1]{fig2_2.eps}}
+ \caption{Distribution of the dataset, the positive examples are in blue circles and negative examples in red crossed. The magenta line represents the class boundary obtained using gradient descent (linear classification), similarly the green one for Newton Raphson method.}
+ \label{fig:7}
+ \end{figure}
+ 
+ \item As we know:
+ $$\sigma(\theta) = \frac1{1+e^{-\theta}}$$
+ $$f(x_i)=\sigma\left(\sum_{d=1}^Dw_ix_{id}\right)$$
+ $$J(w)=-\sum_{i=1}^N[y_i\log(f(x_i))+(1-y_i)\log(1-f(x_i))]$$
+ We obtain:
+ $$\nabla_wJ(w)=X^T({\bf F}(X)-{\bf Y})$$
+ Hence, for Gradient Descent:
+ $$w'=w-\alpha X^T({\bf F}(X)-{\bf Y})$$
+ and for Newton Raphson:
+ $$w' = w-H^{-1}\nabla J(w)$$
+ where
+ $$H=X^TRX\; R=\text{diag}(f(x_1)(1-f(x_1)), f(x_2)(1-f(x_2)), ...)$$
+ so:
+ $$w' = w - (X^TRX)^{-1}({\bf F}(X)-{\bf Y})$$
+ 
+\item The dataset plotted can be seen in Figure \ref{fig:7}. It can be seen that the data is not linearly separable and hence both gradient descent and newton raphson do not classify it properly.
+
+\begin{figure}[H]
+\makebox[\textwidth][c]{\includegraphics[scale=1]{fig1_2.eps}}
+ \caption{The loss error in prediction of classes by gradient descent and newton raphson methods using linear classification as a function of number of iterations.}
+ \label{fig:8}
+ \end{figure}
+ 
+ \item Both the methods reach at almost the same solution. The number of iterations required by Gradient Descent is however large ($\sim2000$) as compared to Newton Raphson ($\sim10$) as seen in Figure \ref{fig:8}.
+ 
+ \item We can perform feature transformation to map $x_1, x_2$ to higher degree polynomials, then we obtain the Figures \ref{fig:9}, \ref{fig:10}, \ref{fig:11} and \ref{fig:12}.
+ 
+ \begin{figure}[H]
+\makebox[\textwidth][c]{\includegraphics[scale=0.7]{d2l0f2.eps}}
+ \caption{Plot of classification boundary for degree 2.}
+ \label{fig:9}
+ \end{figure}
+ 
+  \begin{figure}[H]
+\makebox[\textwidth][c]{\includegraphics[scale=0.7]{d3l0f2.eps}}
+ \caption{Plot of classification boundary for degree 3.}
+ \label{fig:10}
+ \end{figure}
+ 
+  \begin{figure}[H]
+\makebox[\textwidth][c]{\includegraphics[scale=0.7]{d4l0f2.eps}}
+ \caption{Plot of classification boundary for degree 4.}
+ \label{fig:11}
+ \end{figure}
+ 
+   \begin{figure}[H]
+\makebox[\textwidth][c]{\includegraphics[scale=0.7]{d5l0f2.eps}}
+ \caption{Plot of classification boundary for degree 5.}
+ \label{fig:12}
+ \end{figure}
+ 
+ \item We can also introduce a regularization parameter $\lambda$ that will modify our equations in the following way:
+ $$J(w)=-\sum_{i=1}^N[y_i\log(f(x_i))+(1-y_i)\log(1-f(x_i))]+\frac \lambda 2||w||^2$$
+ $$\nabla_wJ(w)=X^T({\bf F}(X)-{\bf Y})+\lambda w$$
+For Newton Raphson:
+ $$w' = w-H^{-1}\nabla J(w)$$
+ where
+ $$H=X^TRX+\lambda I$$
+ so:
+ $$w' = w - (X^TRX+\lambda I)^{-1}({\bf F}(X)-{\bf Y}+\lambda w)$$
+ \item Some examples of figures then obtained are Figure \ref{fig:13} and \ref{fig:14}. These boundaries underfit the given data but have simpler weights. An example of overfitting can be seen in Figure \ref{fig:11}.
+ 
+    \begin{figure}[H]
+\makebox[\textwidth][c]{\includegraphics[scale=1]{d2l10f2.eps}}
+ \caption{Plot of classification boundary for degree 2 ($\lambda=10$).}
+ \label{fig:13}
+ \end{figure}
+     \begin{figure}[H]
+\makebox[\textwidth][c]{\includegraphics[scale=1]{d3l10f2.eps}}
+ \caption{Plot of classification boundary for degree 3 ($\lambda=10$).}
+ \label{fig:14}
+ \end{figure}
+\end{itemize}
 \end{document}
