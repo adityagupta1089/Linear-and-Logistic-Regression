@@ -4,20 +4,20 @@ clc
 % read data
 data = readData();
 % constants
-fractions = 0.01:0.01:0.99;
+fractions = 0.1:0.01:0.90;
 repetitions = 100;
-lambdas = 0:100;
+lambdas = 0:0.1:10;
 % input
-X = data(:,1:end-1);
+X = [ones(size(data,1),1) data(:,1:end-1)];
 N = size(X,1);
 % ouput
 Y = data(:,end);
-trainErrors = zeros(length(fractions), length(lambdas)); 
-testErrors = zeros(length(fractions), length(lambdas)); 
+trainErrors = zeros(length(fractions),length(lambdas)); 
+testErrors = zeros(length(fractions),length(lambdas)); 
 % progress bar
-wb = waitbar(0, 'Please Wait');
+wb = waitbar(0,'Please Wait');
 curr = 0;
-total = length(fractions) * length(lambdas);
+total = length(fractions)*length(lambdas);
 % loop
 for i = 1:length(fractions)
     frac = fractions(i);
@@ -45,9 +45,9 @@ for i = 1:length(fractions)
             trainErrorSum = trainErrorSum + meansquarederr(Ytrain, Ttrain);
             testErrorSum = testErrorSum + meansquarederr(Ytest, Ttest);
         end
-        trainErrors(i, j) = trainErrorSum / repetitions;
-        testErrors(i, j) = testErrorSum / repetitions;
-        curr = curr + 1;
+        trainErrors(i, j) = trainErrorSum/repetitions;
+        testErrors(i, j) = testErrorSum/repetitions;
+        curr = curr+1;
         waitbar(curr/total);
     end
 end
