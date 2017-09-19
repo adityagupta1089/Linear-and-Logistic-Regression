@@ -38,11 +38,11 @@ The following observations were obtained:
 
 \begin{figure}[H]
 \makebox[\textwidth][c]{\includegraphics{fig6.eps}}
- \caption{Mean Sqaured Error for after discarding increasing number of least significant weights in $W$.}
+ \caption{Mean Squared Error for the data after discarding increasing number of least significant weights in $W$.}
  \label{fig:1}
  \end{figure}
  
-\item A particular value of $\lambda$(say $0$) was choosen and then the magnitude of entries in the weights $W$ was compared and one by one the least significant ones were discarded and the mean squared error changes can be seen in Figure \ref{fig:1}. We can see that discarding 2-4 least significant attributes does not make any major change to the mean squared error, hence we can conclude that the input data contained some attributes that were irrelevant in estimating the output values.
+\item A particular value of $\lambda$(say $0$) were chosen and then the magnitude of entries in the weights $W$ were compared and one by one the least significant ones were discarded and the mean squared error changes can be seen in Figure \ref{fig:1}. We can see that discarding 2-4 least significant attributes does not make any major change to the mean squared error, hence we can conclude that the input data contained some attributes that were irrelevant in estimating the output values.
 
 \begin{figure}[H]
 \makebox[\textwidth][c]{\includegraphics[scale=0.65]{fig1.eps}}
@@ -56,7 +56,7 @@ The following observations were obtained:
  \label{fig:3}
  \end{figure}
 
-\item The effect of $\lambda$ on error was observed for different partitions of the data into training and testing sets. The average mean sqaured error for 100 repetitions for splitting-fractions varying from $1\%$ to $99\%$ and lambda values from $0$ to $100$ was observed. The surface corresponding to the average mean absolute error can be seen in Figure \ref{fig:2} and \ref{fig:3}. We can see that for low values of training set fraction or high $\lambda$ values the average mean squared error increased quite a bit.
+\item The effect of $\lambda$ on error was observed for different partitions of the data into training and testing sets. The average mean squared error for 100 repetitions for splitting-fractions varying from $1\%$ to $99\%$ and lambda values from $0$ to $100$ were observed. The surface corresponding to the average mean absolute error can be seen in Figure \ref{fig:2} and \ref{fig:3}. We can see that for low values of training set fraction or high $\lambda$ values the average mean squared error increased quite a bit.
  
  \begin{figure}[H]
 \makebox[\textwidth][c]{\includegraphics[scale=0.7]{fig3.eps}}
@@ -64,7 +64,7 @@ The following observations were obtained:
  \label{fig:4}
  \end{figure}
  
-\item Figure \ref{fig:2} and \ref{fig:3}'s surfaces can be plotted into different graphs for few particular values of splitting-fractions and varying lambda and obsreving the change in average mean absolute error. Figure \ref{fig:4} shows that for high $\lambda$ values the average mean squared error increases and is shaped like a convex function and the increase is more apparent in low training set fraction values.
+\item Figure \ref{fig:2} and \ref{fig:3}'s surfaces can be plotted into different graphs for few particular values of splitting-fractions and varying lambda and observing the change in average mean absolute error. Figure \ref{fig:4} shows that for high $\lambda$ values the average mean squared error increases and is shaped like a convex function and the increase is more apparent in low training set fraction values.
 
 \begin{figure}[H]
 \makebox[\textwidth][c]{\includegraphics[scale=0.7]{fig4.eps}}
@@ -72,7 +72,7 @@ The following observations were obtained:
  \label{fig:5}
  \end{figure}
 
-\item Now we noted the minimum average mean squared testing error for each training set fraction values. Also the corresponding $\lambda$ value was observed. We can see from Figure \ref{fig:5} that with high taining set fraction the minimum average mean sqaured error decreases and though the $\lambda$ values at which these values are obtained  in general have higher magnitude ($\lambda$) as we increase the training set fraction, we can say that probably the model is overfitting and to penalize it we need higher magnitude of $\lambda$.
+\item Now we noted the minimum average mean squared testing error for each training set fraction values. Also the corresponding $\lambda$ value was observed. We can see from Figure \ref{fig:5} that with high training set fraction the minimum average mean squared error decreases and though the $\lambda$ values at which these values are obtained  in general have higher magnitude ($\lambda$) as we increase the training set fraction, we can say that probably the model is overfitting and to penalize it we need higher magnitude of $\lambda$.
 
 \begin{figure}[H]
 \makebox[\textwidth][c]{\includegraphics[scale=0.7]{fig5.eps}}
@@ -80,7 +80,7 @@ The following observations were obtained:
  \label{fig:6}
  \end{figure}
  
-\item The correspondence between the actual and predicted values was also observed. For perfect prediction, this should correspond to a straight line through origin at $45^\circ$ degrees. Figure \ref{fig:6} shows that the actual values and the predicted values lie close to the line $y=x$ thus ensuring that there is a significant correlation and accuracy to the predicted values.
+\item The correspondence between the actual and predicted values were also observed. For perfect prediction, this should correspond to a straight line through the origin at $45^\circ$ degrees. Figure \ref{fig:6} shows that the actual values and the predicted values lie close to the line $y=x$ thus ensuring that there are significant correlation and accuracy to the predicted values.
  
 \end{itemize}
 
@@ -113,19 +113,19 @@ Given $x_1$ and $x_2$ attribute values for different individual whether the cred
  and for Newton Raphson:
  $$w' = w-H^{-1}\nabla J(w)$$
  where
- $$H=X^TRX\; R=\text{diag}(f(x_1)(1-f(x_1)), f(x_2)(1-f(x_2)), ...)$$
+ $$H=X^TRX\;\text{where } R=\text{diag}(f(x_1)(1-f(x_1)), f(x_2)(1-f(x_2)), ...)$$
  so:
  $$w' = w - (X^TRX)^{-1}({\bf F}(X)-{\bf Y})$$
  
-\item The dataset plotted can be seen in Figure \ref{fig:7}. It can be seen that the data is not linearly separable and hence both gradient descent and newton raphson do not classify it properly.
+\item The dataset plotted can be seen in Figure \ref{fig:7}. It can be seen that the data is not linearly separable and hence both Gradient Descent and Newton Raphson do not classify it properly.
 
 \begin{figure}[H]
 \makebox[\textwidth][c]{\includegraphics[scale=1]{fig1_2.eps}}
- \caption{The loss error in prediction of classes by gradient descent and newton raphson methods using linear classification as a function of number of iterations.}
+ \caption{The loss error in prediction of classes by Gradient Descent and Newton Raphson methods using linear classification as a function of number of iterations.}
  \label{fig:8}
  \end{figure}
  
- \item Both the methods reach at almost the same solution. The number of iterations required by Gradient Descent is however large ($\sim2000$) as compared to Newton Raphson ($\sim10$) as seen in Figure \ref{fig:8}.
+ \item Both the methods reach almost the same solution. The number of iterations required by Gradient Descent is however large ($\sim2000$) as compared to Newton Raphson ($\sim10$) as seen in Figure \ref{fig:8}.
  
  \item We can perform feature transformation to map $x_1, x_2$ to higher degree polynomials, then we obtain the Figures \ref{fig:9}, \ref{fig:10}, \ref{fig:11} and \ref{fig:12}.
  
