@@ -162,7 +162,7 @@ For Newton Raphson:
  $$H=X^TRX+\lambda I$$
  so:
  $$w' = w - (X^TRX+\lambda I)^{-1}({\bf F}(X)-{\bf Y}+\lambda w)$$
- \item Some examples of figures then obtained are Figure \ref{fig:13} and \ref{fig:14}. These boundaries underfit the given data but have simpler weights. An example of overfitting can be seen in Figure \ref{fig:11}.
+ \item Some examples of figures then obtained are Figure \ref{fig:13} and \ref{fig:14}. These boundaries underfit the given data but have simpler weights.
  
     \begin{figure}[H]
 \makebox[\textwidth][c]{\includegraphics[scale=1]{d2l10f2.eps}}
@@ -172,6 +172,19 @@ For Newton Raphson:
      \begin{figure}[H]
 \makebox[\textwidth][c]{\includegraphics[scale=1]{d3l10f2.eps}}
  \caption{Plot of classification boundary for degree 3 ($\lambda=10$).}
+ \label{fig:14}
+ \end{figure}
+ 
+ \item Now we divide the given data (we generate 1000 points using \verb|l2reglog.m| with introducing 10\% noise) into training and testing sets (50\% - 50\%) and check for overfitting and underfitting. The following appropriate figures were obtained.
+ 
+     \begin{figure}[H]
+\makebox[\textwidth][c]{\includegraphics[scale=1]{d2l0f2_c2.eps}}
+ \caption{Plot of classification boundary for degree 2 ($\lambda=0$) overfitting the data.}
+ \label{fig:13}
+ \end{figure}
+     \begin{figure}[H]
+\makebox[\textwidth][c]{\includegraphics[scale=1]{d2l5f2_c2.eps}}
+ \caption{Plot of classification boundary for degree 2 ($\lambda=10$) underfitting the data.}
  \label{fig:14}
  \end{figure}
 \end{itemize}
