@@ -5,3 +5,5 @@
 *.asv
 *.eps
 *.png
+*.fig
+*eps-converted-to.pdf
