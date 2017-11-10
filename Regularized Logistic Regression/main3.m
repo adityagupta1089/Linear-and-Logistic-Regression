@@ -2,9 +2,9 @@ close all
 clear all
 clc
 % constants
-N = 2000;
+N = 10;
 degree = 3;
-lambda = 0;
+lambda = 10;
 % input
 A = csvread('credit.txt');
 X = [ones(size(A,1), 1) A(:,1:end-1)];

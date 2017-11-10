@@ -1,4 +1,7 @@
 *.log
 *.aux
 *.gz
-
+2015CSB1003/*
+*.asv
+*.eps
+*.png
